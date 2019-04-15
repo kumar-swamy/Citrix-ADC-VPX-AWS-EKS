@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Creates a NetScaler VPX Express instance with a single network interface
+Description: Creates a Citrix ADC VPX 12.1 version  instance with a single network interface
 Metadata:
   Copyright:
     - 'Copyright (c) 2019 Citrix Systems, Inc.'
@@ -255,7 +255,7 @@ Resources:
     Type: 'AWS::EC2::Instance'
     Properties:
       Tags:
-        - Value: NetScalerExpressVPX
+        - Value: CitrixADCVPX
           Key: Name
         - Value: LoadBalancer
           Key: Purpose

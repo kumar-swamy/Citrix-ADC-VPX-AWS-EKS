@@ -1,4 +1,4 @@
-## About these CloudFormation templates
+## About these CloudFormation template
 This CloudFormation template is provided to bring up a VPX instance with one ENI.  Users can re-use / modify or enhance the templates to suit their particular production and testing needs.
 This CFT also provisions NSIP, VIP and SNIP. The Primary IP address will be marked as VIP such that multiple instances of VPX can be deployed and load-balanced using AWS classic loadbalancer.  This also creates a security group attached to the ENI of VPX  to  allow all TCP traffic on Port 22,80 and 443. Users can modify this to suit their requirements. 
 >**Note:**
@@ -15,11 +15,11 @@ The CloudFormation template requires sufficient permissions to create IAM roles,
 
 
 ## Input
-`VpcId`: VPC where the VPX to be deployed.
-`SubnetId`: Subnet Id where the VPX instance to be deployed.
-`VPXInstanceType`: Instance type to be used for VPX EC2 instance
-`VPXTenancyType`: Tenancy Type, Dedicated or Shared
-`KeyName`: SSH Key name for accessing the VPX through SSH. 
+- `VpcId`: VPC where the VPX to be deployed.  
+- `SubnetId`: Subnet Id where the VPX instance to be deployed.  
+- `VPXInstanceType`: Instance type to be used for VPX EC2 instance  
+- `VPXTenancyType`: Tenancy Type, Dedicated or Shared  
+- `KeyName`: SSH Key name for accessing the VPX through SSH   
 
 
 ## CloudFormation Template description
@@ -38,35 +38,35 @@ The CloudFormation template requires sufficient permissions to create IAM roles,
 ## Quick Launch Links
 
 - US-East-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - US-East-2 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - US-West-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - US-West-2 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - CA-Central-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - CA-Central-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - EU-West-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - EU-West-2 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - EU-central-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - AP-South-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - AP-Northeast-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - AP-Northeast-2 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - AP-Southeast-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - AP-Southeast-2 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 - SA-East-1 region
-    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/new?stackName=Citrix-ADC-12.1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
+    [![Create NetScaler VPX Express](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/new?stackName=Citrix-ADC-12-1-VPX&templateURL=https://s3.amazonaws.com/citrix-adc-vpx-cft/citrix.adc.1nic.template)
 
 
 ## Additional Links:
