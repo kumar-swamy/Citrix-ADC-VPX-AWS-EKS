@@ -1,4 +1,4 @@
-# Deploying Citrix ADC VPX in Active-Active HA in EKS environment using Amazon Classic Loadbalancer and Citrix Ingress Controller
+# Deploying Citrix ADC VPX in Active-Active HA in EKS environment using Amazon Network/Classic Load balancer and Citrix Ingress Controller
 
 This guide explains how to create our recommended solution for a highly available, active‑active deployment of VPX instances in multiple Availability zones in the Amazon Web Services (AWS) cloud for the Elastic Container Service For Kubernetes (EKS) workloads. The solution combines the AWS Classic LoadBalancer(ELB) for fast and efficient handling of Layer 4 traffic with Citrix ADC VPX for advanced, Layer 7 features such as advanced load balancing, caching and content‑based routing. The combined solution gives the best of Loadbalancing and advanced and time tested features Layer 7 features of Citrix ADC.
 This guide explains how to set up an AWS ELB in front of one pair of VPX load balancers.
@@ -19,7 +19,7 @@ This includes CloudFromation templates to bring up an EKS cluster which is deplo
 
 
  
-Here AWS ELB handles Layer 4 TCP connections and balances traffic using a flow hash routing algorithm. An AWS ELB has a DNS name to which an IP address is assigned dynamically and this can be used to add an Alias A record for your domain in Route53. 
+Here AWS Network Load Balancer or Classic Load balancer, hereafter referred as ELB,  handles Layer 4 TCP connections and balances traffic using a flow hash routing algorithm. An AWS ELB has a DNS name to which an IP address is assigned dynamically and this can be used to add an Alias A record for your domain in Route53. 
 
 The AWS ELB listens for incoming connections as defined by its listeners. Each listener forwards a new connection to one of the available VPX instances. VPX instance that has received the traffic can do Layer 7 load balancing to Kubernetes pods along with other Layer 7 functionalities like respinder policy, Rewrite Policy, SSL offloading, Authentication policies etc.
 One instance of Citrix ingress controller is deployed in EKS cluster for each VPX instances that will configure the Ingress objects in Kubernetes cluster on respective VPX instances. Since both Citrix ingress controller are deployed with same ingress class, ingress objects are configured on both VPX instances.
@@ -66,8 +66,61 @@ Once the VPX instances are up, you must setup a system user account in VPX insta
 
 Now that both CIC pods are running on EKS cluster, any Kubernetes Ingress resources configured with ingress-class 'citrix' will be configured on both VPX instances. 
 
+## Setting up Amazon Network Load balancer(NLB)  
 
-## Setting up  Amazon Classic Load balancer(ELB)
+Amazon network load balancer (NLB) is best suited for handling TCP connection load balancing, here we setup an NLB to accept the incoming traffic and route it to one of the VPX instances. Amazon NLB selects a target using a flow hash algorithm, based on the protocol, source IP address, source port, destination IP address, destination port, and TCP sequence number.
+
+1. Log in to the [AWS Management Console for EC2](https://console.aws.amazon.com/ec2/).
+
+2. Here we create two target groups `Target-Group-80` and `Target-Group-443` for routing traffic on port 80 and port 443 respectively. In the left navigation bar, select `Target Groups`
+
+3. Create a target group `Target-Group-80`, select Target type as `Instance` , Protocol `TCP`, Port `80`, select your VPC where EKS cluster is deployed. Change the health check settings to use TCP. Optionally you can modify the `Advanced health check settings` to configure health checks.
+
+   ![NLB1](./media/NLB1.png)
+
+4. Create a target group `Target-Group-443`, select Target type as `Instance` , Protocol `TCP`, Port `443`, select your VPC where EKS is deployed. Change the health check settings to use TCP
+
+   ![NLB2](./media/NLB2.png)
+
+5. Once the Target groups are created, you need to register the target instances.  Select the created target group in the list page, select `Target` tab and  press 'edit'. In the instances tab. select two VPX instances and press 'Add to registered'. Repeat the same step for other target group. 
+
+   ![NLB3](./media/NLB3.png)
+
+6. Now lets proceed to creare Network Load balancer. In the left navigation bar, select Load Balancers, then click the  Create Load Balancer  button.
+   In the Select load balancer type window that opens, click the  `Create`  button in the Network Load balancer panel (Center)
+
+    ![NLB4](./media/NLB4.png)
+ 
+
+7.  In the 'Configure Load Balancer', Type a name for the Load balancer and  Select scheme as "internet facing" . Add listeners for your ports with Loadbalance protocol set to `TCP`.  Figure shows port 80 and port 443 is added to listeners. 
+
+    ![NLB5](./media/NLB5.png)
+ 
+
+8. In the same page , select the VPC, avaiability zones and subnets where the VPX instances are deployed.
+
+    ![NLB6](./media/NLB6.png)
+
+8. In the "Configure routing" page, select Target Group as `Existing target group` and select `Target-group-80`
+
+    ![NLB7](./media/NLB7.png)
+
+9. In the "Review" page, review your settings and press 'create'
+      
+    ![NLB10](./media/NLB10.png)
+
+10. Once the NLB is created, select the load balancer you've created in the list page, and select the 'Listeners' tab , select `TCP : 443` and press edit. 
+
+    ![NLB8](./media/NLB8.png)
+
+11. In the 'Listeners' page, delete the default action, and select 'Forward to' `Target-Group-443` and update. 
+
+    ![NLB9](./media/NLB9.png)  
+
+
+## Setting up  Amazon Classic Load balancer(CLB)  
+Alternative to Amazon network Load balancer, you can setup Classic Load balancer as Tier 1 TCP load balancer. Follow the below procedure to connfigure a classic load balancer.
+
 1. Log in to the [AWS Management Console for EC2](https://console.aws.amazon.com/ec2/).
 
 2. In the left navigation bar, select Load Balancers, then click the  Create Load Balancer  button.
